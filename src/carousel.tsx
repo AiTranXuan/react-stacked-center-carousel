@@ -25,14 +25,14 @@ export default class StackedCarousel extends React.PureComponent<props, state> {
   private validateProps = () => {
     const { currentVisibleSlide, maxVisibleSlide, fadeDistance, customScales } =
       this.props;
-    if (
-      (currentVisibleSlide && currentVisibleSlide % 2 !== 1) ||
-      maxVisibleSlide % 2 !== 1
-    ) {
-      throw Error(
-        'currentVisibleSlide or maxVisibleSlide must be an odd number'
-      );
-    }
+    // if (
+    //   (currentVisibleSlide && currentVisibleSlide % 2 !== 1) ||
+    //   maxVisibleSlide % 2 !== 1
+    // ) {
+    //   throw Error(
+    //     'currentVisibleSlide or maxVisibleSlide must be an odd number'
+    //   );
+    // }
     if (currentVisibleSlide && currentVisibleSlide > maxVisibleSlide) {
       throw Error('currentVisibleSlide must be smaller than maxVisibleSlide');
     }
@@ -40,10 +40,10 @@ export default class StackedCarousel extends React.PureComponent<props, state> {
       if (fadeDistance > 1 || fadeDistance < 0) {
         throw Error('fadeDistance is a percentage value in the range of 0 - 1');
       }
-    }
-    if (customScales && customScales.length !== (maxVisibleSlide + 3) / 2) {
-      throw Error('customScales must have lengh (maxVisibleSlide + 3) / 2');
-    }
+    // }
+    // if (customScales && customScales.length !== (maxVisibleSlide + 3) / 2) {
+    //   throw Error('customScales must have lengh (maxVisibleSlide + 3) / 2');
+    // }
   };
 
   private initializeProperties = (constructor: boolean = false) => {
@@ -323,7 +323,8 @@ export default class StackedCarousel extends React.PureComponent<props, state> {
       maxVisibleSlide
     } = this.props;
     const currentVisibleSlide = currentVisibleDisplaySlide || maxVisibleSlide;
-    const m = Math.max(data.length, currentVisibleSlide + 2);
+    // const m = Math.max(data.length, currentVisibleSlide + 2);
+    const m = Math.max(data.length, currentVisibleSlide);
     return ((n % m) + m) % m;
   };
 
